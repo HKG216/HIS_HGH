@@ -1,0 +1,35 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@model KMU.HisOrder.MVC.Models.KmuCoderef
+@{
+    Layout = null;
+}
+<div>
+        <input id="myInputID" required asp-for="RefName" class="form-control" />
+        <button id="add" class="btn btn-primary  mt-2">Add</button>
+
+</div>
+
+<script>
+    $("#add").on("click", function(){
+     var address = $("#myInputID").val();
+     $.ajax({
+         type:"post",
+            url: "/MedicalRecord/MedRecord/AddAddress?address="+address,
+         success:function(response){
+
+         }
+     })
+        //$("#myInputID").val('');
+        $('#form-modal').modal('hide');
+    });
+
+
+    var el = document.getElementById("myInputID");
+    el.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            layer.msg("Please Click Add Button");
+            event.preventDefault();
+        }
+    });
+
+</script>
